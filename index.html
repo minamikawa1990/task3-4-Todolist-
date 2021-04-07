@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <title>ToDoリスト3-3</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <label for="radio_all"><input id="radio_all" type="radio" name="category" value="サンプル">すべて</label>
+    <label for="cradio_working"><input id="radio_working" type="radio" name="category" value="サンプル">作業中</label>
+    <label for="radio_complete"><input id="radio_complete" type="radio" name="category" value="サンプル">完了 </label>
+ 
+    <h1>ToDoリスト</h1>
+
+   <table class="table">
+     <thead class="thead">
+       <tr>
+        <th>ID</th>
+        <th>コメント</th>
+        <th>状態</th>
+        <th></th>
+       </tr>
+     </thead>
+     <tbody id="tasks">
+         
+
+     </tbody>
+   </table>
+  
+    <h1>新規タスクの追加</h1>
+
+    <input id="input" type="text" value="">
+    <button id="add">追加</button>
+
+  <script src="main.js"></script>
+</body>
+</html>
