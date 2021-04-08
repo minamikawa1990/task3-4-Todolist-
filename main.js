@@ -2,10 +2,17 @@
 
 {
     
+    
+    const radioCheck = document.getElementsByClassName('radioCheck');
+
+    if(radioCheck[0].cheked) {
+
+    }
+    
     const add = document.getElementById('add');
     const input = document.getElementById('input');
     const tasks = document.getElementById('tasks');
-    const todos = [];
+    let todos = [];
 
     const addStatus = (status, row) => {
         const createBtnStatus = document.createElement('button');
@@ -72,6 +79,37 @@
         addTask();
         console.log(todos);
     })
+
+
+    const getRadioAll = document.getElementById('radio-all');
+    const getRadioWorking = document.getElementById('radio-working');
+    const getRadioComplete = document.getElementById('radio-complete');
+
+    getRadioAll.addEventListener('click', () => {
+        console.log('aaa');
+    })
+    getRadioWorking.addEventListener('click', () => {
+        // listにtodosのstatusの要素を格納している
+        const result = todos.filter( function(value) {
+            return value.status === '作業中';
+        });
+        tasks.style.display ='none';
+        
+        
+        console.log(result);
+    });
+    getRadioComplete.addEventListener('click', () => {
+        const result = todos.filter( function(value) {
+            return value.status === '完了';
+        });
+        tasks.style.display ='none';
+
+
+       
+        console.log(result);
+        
+    })
+
 
 }
 
