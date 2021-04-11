@@ -87,13 +87,28 @@
 
     getRadioAll.addEventListener('click', () => {
         console.log('aaa');
+        addTask();
     })
     getRadioWorking.addEventListener('click', () => {
-        // listにtodosのstatusの要素を格納している
         const result = todos.filter( function(value) {
             return value.status === '作業中';
         });
-        tasks.style.display ='none';
+        // tasks.style.display ='none';
+        tasks.innerText = '';
+        result.forEach(todo => {
+        const todoId = tasks.rows.length;//tbody内の行の個数をId番号に指定
+        const row = tasks.insertRow(-1);//変数rowをtasksの最終行に追加
+        row.classList.add('tasks');//rowにtasksクラスをつける
+        const id = row.insertCell(0);//変数idをrowの1番目に挿入
+        const comment = row.insertCell(1);//変数commentをrowの2番目に挿入
+        const status = row.insertCell(2);//変数statusをrowの3番目に挿入
+        const remove = row.insertCell(3);//変数removeをrowの4番目に挿入
+        id.innerText = todoId;//idのテキストをtodoIdに指定
+        comment.innerText = result.task;//コメントのテキストをオブジェクトの値で指定
+        
+        removeTask(remove, row);
+        addStatus(status, row);
+        });
         
         
         console.log(result);
@@ -102,9 +117,24 @@
         const result = todos.filter( function(value) {
             return value.status === '完了';
         });
-        tasks.style.display ='none';
+        // tasks.style.display ='none';
+        tasks.innerText = '';
+        result.forEach(todo => {
+        const todoId = tasks.rows.length;//tbody内の行の個数をId番号に指定
+        const row = tasks.insertRow(-1);//変数rowをtasksの最終行に追加
+        row.classList.add('tasks');//rowにtasksクラスをつける
+        const id = row.insertCell(0);//変数idをrowの1番目に挿入
+        const comment = row.insertCell(1);//変数commentをrowの2番目に挿入
+        const status = row.insertCell(2);//変数statusをrowの3番目に挿入
+        const remove = row.insertCell(3);//変数removeをrowの4番目に挿入
+        id.innerText = todoId;//idのテキストをtodoIdに指定
+        comment.innerText = result.task;//コメントのテキストをオブジェクトの値で指定
+        
+        removeTask(remove, row);
+        addStatus(status, row);
+        });
 
-
+       
        
         console.log(result);
         
