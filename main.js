@@ -90,12 +90,12 @@
         addTask();
     })
     getRadioWorking.addEventListener('click', () => {
-        const result = todos.filter( function(value) {
+        const workingArray= todos.filter( function(value) {
             return value.status === '作業中';
         });
-        // tasks.style.display ='none';
+        tasks.style.display ='none';
         tasks.innerText = '';
-        result.forEach(todo => {
+        workingArray.forEach(todo => {
         const todoId = tasks.rows.length;//tbody内の行の個数をId番号に指定
         const row = tasks.insertRow(-1);//変数rowをtasksの最終行に追加
         row.classList.add('tasks');//rowにtasksクラスをつける
@@ -104,22 +104,21 @@
         const status = row.insertCell(2);//変数statusをrowの3番目に挿入
         const remove = row.insertCell(3);//変数removeをrowの4番目に挿入
         id.innerText = todoId;//idのテキストをtodoIdに指定
-        comment.innerText = result.task;//コメントのテキストをオブジェクトの値で指定
+        comment.innerText = workingArray.task;//コメントのテキストをオブジェクトの値で指定
         
         removeTask(remove, row);
         addStatus(status, row);
         });
-        
         
         console.log(result);
     });
     getRadioComplete.addEventListener('click', () => {
-        const result = todos.filter( function(value) {
+        const completeArray = todos.filter( function(value) {
             return value.status === '完了';
         });
-        // tasks.style.display ='none';
+        tasks.style.display ='none';
         tasks.innerText = '';
-        result.forEach(todo => {
+        completeArray.forEach(todo => {
         const todoId = tasks.rows.length;//tbody内の行の個数をId番号に指定
         const row = tasks.insertRow(-1);//変数rowをtasksの最終行に追加
         row.classList.add('tasks');//rowにtasksクラスをつける
@@ -128,14 +127,11 @@
         const status = row.insertCell(2);//変数statusをrowの3番目に挿入
         const remove = row.insertCell(3);//変数removeをrowの4番目に挿入
         id.innerText = todoId;//idのテキストをtodoIdに指定
-        comment.innerText = result.task;//コメントのテキストをオブジェクトの値で指定
+        comment.innerText = completeArray.task;//コメントのテキストをオブジェクトの値で指定
         
         removeTask(remove, row);
         addStatus(status, row);
         });
-
-       
-       
         console.log(result);
         
     })
