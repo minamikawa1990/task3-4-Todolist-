@@ -37,7 +37,7 @@
         return createBtnRemove;
     };
 
-    function displayTodos(todos) {
+    function displayTodos() {
         tasks.innerText = '';
         todos.forEach(todo => {
             const todoId = tasks.rows.length;//tbody内の行の個数をId番号に指定
@@ -82,7 +82,8 @@
         const workingArray　= todos.filter( function(value) {
             return value.status === '作業中';
         });
-        displayTodos(workingArray);
+        todos = workingArray;
+        displayTodos();
         console.log(workingArray);
     });
 
@@ -91,7 +92,8 @@
             return value.status === '完了';
         });
         
-        displayTodos(completeArray);
+        todos = completeArray;
+        displayTodos();
         console.log(completeArray);
     });
 
