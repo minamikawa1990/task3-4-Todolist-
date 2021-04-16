@@ -6,13 +6,18 @@
     const tasks = document.getElementById('tasks');
     let todos = [];
 
-    const addStatus = (status, row) => {
+    const addStatus = (status, row, array) => {
         const createBtnStatus = document.createElement('button');
         if(createBtnStatus.textContent === '完了') {
             return;
         }
         const index = row.rowIndex - 1;
-        createBtnStatus.textContent = todos[index].status;
+        createBtnStatus.textContent = array[index].status;
+        // if (getRadioWorking.checked = true) {
+        //     createBtnStatus.textContent === workingArray[index].status;
+        // }　else if (getRadioComplete.checked === true) {
+        //     createBtnStatus.textContent === completeArray[index].status;
+        // }
         status.appendChild(createBtnStatus);
         createBtnStatus.addEventListener('click', () => {
             if(createBtnStatus.textContent === '作業中'){
@@ -37,9 +42,9 @@
         return createBtnRemove;
     };
 
-    function displayTodos() {
+    function displayTodos(array) {
         tasks.innerText = '';
-        todos.forEach(todo => {
+        array.forEach(todo => {
             const todoId = tasks.rows.length;//tbody内の行の個数をId番号に指定
             const row = tasks.insertRow(-1);//変数rowをtasksの最終行に追加
             row.classList.add('tasks');//rowにtasksクラスをつける
@@ -51,7 +56,7 @@
             comment.innerText = todo.task;//コメントのテキストをオブジェクトの値で指定
             
             removeTask(remove, row);
-            addStatus(status, row);
+            addStatus(status, row, array);
             });
     }
 
@@ -61,7 +66,7 @@
             status: '作業中'
         };
         todos.push(todo);
-        displayTodos();
+        displayTodos(todos);
         input.value = '';
     }
 
@@ -76,14 +81,13 @@
 
     getRadioAll.addEventListener('click', () => {
         console.log('aaa');
-        displayTodos();
+        displayTodos(todos);
     })
     getRadioWorking.addEventListener('click', () => {
         const workingArray　= todos.filter( function(value) {
             return value.status === '作業中';
         });
-        todos = workingArray;
-        displayTodos();
+        displayTodos(workingArray);
         console.log(workingArray);
     });
 
@@ -92,8 +96,8 @@
             return value.status === '完了';
         });
         
-        todos = completeArray;
-        displayTodos();
+        
+        displayTodos(completeArray);
         console.log(completeArray);
     });
 
