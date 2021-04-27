@@ -13,12 +13,14 @@
          workingArray　= todos.filter( function(value) {
             return value.status === '作業中';
         });
+        displayTodos(workingArray);
         return;
     }
     function filtterCompleteArray() {
          completeArray　= todos.filter( function(value) {
             return value.status === '完了';
         });
+        displayTodos(completeArray);
         return;
     }
 
@@ -39,10 +41,8 @@
             array[index].status = createBtnStatus.textContent; //配列の中身も変更
             if (getRadioWorking.checked) {
                 filtterWorkingArray();
-                displayTodos(workingArray);
             }else if (getRadioComplete.checked) {
                 filtterCompleteArray();
-                displayTodos(completeArray);
             }
         });
         return createBtnStatus;
@@ -55,7 +55,15 @@
         createBtnRemove.addEventListener('click', () => {
             const index = row.rowIndex - 1;
             todos.splice(index, 1);
-            displayTodos();
+            if (getRadioWorking.checked) {
+                filtterWorkingArray();
+                return;
+            }
+            if (getRadioComplete.checked) {
+                filtterCompleteArray();
+                return;
+            }
+            displayTodos(todos);
         });
         return createBtnRemove;
     };
@@ -92,8 +100,6 @@
         if(getRadioWorking.checked) {
             addTask(todos);
             filtterWorkingArray();
-            displayTodos(workingArray);
-            // addTask(workingArray);
             return;
         }
         else if(getRadioComplete.checked) {
@@ -102,6 +108,7 @@
                 status: '作業中'
             };
             todos.push(todo);
+            input.value='';
             return;
         }
         addTask(todos);
@@ -126,7 +133,6 @@
             return value.status === '完了';
         });
         displayTodos(completeArray);
-        console.log(completeArray);
     });
 
 }
