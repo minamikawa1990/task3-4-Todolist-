@@ -10,12 +10,17 @@
 
     
     function filtterWorkingArray() {
-        let workingArray　= todos.filter( function(value) {
+         workingArray　= todos.filter( function(value) {
             return value.status === '作業中';
         });
         return;
     }
-    
+    function filtterCompleteArray() {
+         completeArray　= todos.filter( function(value) {
+            return value.status === '完了';
+        });
+        return;
+    }
 
     const addStatus = (status, row, array) => {
         const createBtnStatus = document.createElement('button');
@@ -39,9 +44,7 @@
                 // });
                 displayTodos(workingArray);
             }else if (getRadioComplete.checked) {
-                let completeArray　= todos.filter( function(value) {
-                    return value.status === '完了';
-                });
+                filtterCompleteArray();
                 displayTodos(completeArray);
             }
         });
@@ -89,6 +92,10 @@
     }
 
     add.addEventListener('click', () => {
+        if(getRadioWorking.checked) {
+            addTask();
+            return;
+        }
         addTask(todos);
         console.log(todos);
        
