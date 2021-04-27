@@ -39,9 +39,6 @@
             array[index].status = createBtnStatus.textContent; //配列の中身も変更
             if (getRadioWorking.checked) {
                 filtterWorkingArray();
-                // let workingArray　= todos.filter( function(value) {
-                //     return value.status === '作業中';
-                // });
                 displayTodos(workingArray);
             }else if (getRadioComplete.checked) {
                 filtterCompleteArray();
@@ -93,12 +90,21 @@
 
     add.addEventListener('click', () => {
         if(getRadioWorking.checked) {
-            addTask();
+            addTask(todos);
+            filtterWorkingArray();
+            displayTodos(workingArray);
+            // addTask(workingArray);
+            return;
+        }
+        else if(getRadioComplete.checked) {
+            const todo = {
+                task: input.value,
+                status: '作業中'
+            };
+            todos.push(todo);
             return;
         }
         addTask(todos);
-        console.log(todos);
-       
     })
 
     const getRadioAll = document.getElementById('radio-all');
@@ -112,9 +118,7 @@
         let workingArray　= todos.filter( function(value) {
             return value.status === '作業中';
         });
-        // workingFiltter();
         displayTodos(workingArray);
-        
     });
 
     getRadioComplete.addEventListener('click', () => {
